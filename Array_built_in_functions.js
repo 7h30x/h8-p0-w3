@@ -9,7 +9,7 @@ function dataHandling2 (x) {
     return x;
 }
 
-date=input[3].split('/').sort(function(a,b) {return(b-a)})  //get and format date from the 'input' array
+var date=input[3].split('/').sort(function(a,b) {return(b-a)})  //get and format date from the 'input' array
 
 console.log('tanggal tersortir: '+ date);
 date=date.join('-');
@@ -45,5 +45,5 @@ switch (Number(month)) {      //convert month number into month name
 console.log('Bulan: '+ month)
 
 const data=dataHandling2(input);  //assign dataHandling function value to variable 'data', and slice 2nd element to 15 chars.
-console.log(data[1].slice(0,15)); //taking index of an array will return the actual data (if type==string, then will return data with type==string)
+console.log(String(data[1]).slice(0,15)); //taking index of an array will return the actual data (if type==string, then will return data with type==string)
 
