@@ -15,7 +15,7 @@ console.log('tanggal tersortir: '+ date);
 date=date.join('-');
 console.log('formatted tanggal: '+ date); 
 
-month=date[2];
+var month=date[2];
 switch (Number(month)) {      //convert month number into month name
     case 01: month='January'
             break;
