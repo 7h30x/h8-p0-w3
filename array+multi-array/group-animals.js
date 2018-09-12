@@ -1,47 +1,38 @@
 
-function groupAnimals (animals) {
-   
-    groups=[[animals[0]]]
-   
-   
-    for (i=1; i<animals.length; i++) {
-        var isLetter=true;
-       
-        for (j=0; j<groups.length; j++) {
-          console.log('i '+i)
-            console.log('j '+j)
-            console.log('groups.length ' + groups.length)
-              console.log(animals[i]);
-                console.log(groups[j]);
-            if (animals[i].charAt(0) !== groups[j][0].charAt(0)) {
-              
-                isLetter=false;
-                
-                }
-            else {
+function groupAnimals(animals) {
+
+    results=[[animals[0]]];
+
+    for (i=1;i<animals.length; i++) {
+        let isLetter=true;
+        
+        for (j=0; j<results.length; j++) {
+            var inner=results[j];
+           
+         
+            if (animals[i].charAt(0) === inner[0].charAt(0)){
                 isLetter=true;
                 break;
-            }
-          }
-        if (isLetter===false) {
-            groups.push([animals[i]]);
-            }
+
+            } 
+            else{
+              isLetter=false;
+            }       
+        }
+    
+        if (isLetter===true) {
+          inner.push(animals[i]);
+        }
         else {
-          
-            groups[j].push(animals[i]);
-              }
+          results.push([animals[i]]);
+        }
     }
-    return groups;
-    }
+    return results;
+  }
 
-animals=["ayam", "akucing", "bebek", 'calamity',"bangau","ahol",'casanddra']
-groupAnimals(animals)
-
-
-//notes
-//make the looping variables easy to read > they should be identifiable based on loop number rather than too descriptive
-//take a break if you get stuck and move on to another problem
-//break a complex problem down to individual parts that are not working
-//recognize if you don't have the right approach and get input
-//issues usually arise if a problem solution requires patterns you don't have in your repertoire
-// 
+  
+  // TEST CASES
+  console.log(groupAnimals(['cacing', 'ayam', 'kuda', 'anoa', 'kancil']));
+  // [ ['ayam', 'anoa'], ['cacing'], ['kuda', 'kancil'] ]
+  console.log(groupAnimals(['cacing', 'ayam', 'kuda', 'anoa', 'kancil', 'unta', 'cicak' ]));
+  // [ ['ayam', 'anoa'], ['cacing', 'cicak'], ['kuda'], ['unta'] ]

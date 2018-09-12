@@ -1,20 +1,25 @@
 function hitungJumlahKata(kalimat) {
-    kalimat=String(kalimat).split('');
+    kalimat=kalimat.split('');
     var spaces=0;
-    console.log(kalimat)
 
-    for (char=0; char<kalimat.length; char++) {
+    for (let char=0; char<kalimat.length; char++) {
         if (kalimat[char]==' ') {
             spaces+=1;
             
             }
-        else {}    
+      
        
     }
     
-    var jumblahKata=kalimat.length-spaces;
+    var jumblahKata=spaces+1;
     
     return(jumblahKata)
     }
 
-hitungJumlahKata('I am    legend')
+
+  // TEST CASES
+  console.log(hitungJumlahKata('I have a dream')); // 4
+  console.log(hitungJumlahKata('Never eat shredded wheat or cake')); // 6
+  console.log(hitungJumlahKata('A song to sing')); // 4
+  console.log(hitungJumlahKata('I')); // 1
+  console.log(hitungJumlahKata('I believe I can code')); // 5

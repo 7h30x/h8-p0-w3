@@ -1,11 +1,11 @@
-
+"use strict";
 /*pseudocode
 input= array with x, o , 'space'
 goal: find shortest distance between x and o , or o and x
 output: variable of stated goal
 logic structures:
     STORE current state as x 
-    STORE 'starting index' as index of x
+    STORE 'starting index' as index of found x
     STORE distanceXO=''
     STORE distanceOX=''
     iterate over array length
@@ -29,58 +29,69 @@ logic structures:
     return minimum of distance XO AND distanceOX
 
 */
-function findXO (array) {
+function targetTerdekat (arr) {
    
-    var startingIndex=array.indexOf('x');
-    var distanceXO='';
-    var distanceOX='';
+    let startingIndex=arr.indexOf('x');
+   
+    let distanceXO=0;
+    let distanceOX=0;
 
-    for (i=startingIndex; i<array.length; i++) {
+    for (let i=startingIndex; i<arr.length; i++) {
 
-        if (array[i]==='o') {
+        if (arr[i]==='o' && startingIndex!==-1) {
          
-            var foundIndex=i
+            let foundIndex=i
             
-            var localDistance=foundIndex-startingIndex;
+            let localDistance=foundIndex-startingIndex;
             
-             distanceXO=localDistance;
+            
            
-            if (distanceXO>localDistance) {
+            if (distanceXO===0 || distanceXO>localDistance) {
                
-                console.log('distancexo' +distanceXO)
+                distanceXO=localDistance;
             
             }
             
 
         }
-        else if (array[i]==='x') {
+        else if (arr[i]==='x') {
             startingIndex=i
        
         }
     }
+
     
-    startingIndex=array.indexOf('o');
-    for (j=startingIndex; j<array.length; j++) {
-        if (array[j]==='x') {
-            var foundIndex=j
-            var localDistance=foundIndex-startingIndex;
-            distanceOX=localDistance;
-            if (distanceOX>localDistance) {
+    startingIndex=arr.indexOf('o');
+    for (let j=startingIndex; j<arr.length; j++) {
+        if (arr[j]==='x' && startingIndex!==-1) {
+            let foundIndex=j
+            let localDistance=foundIndex-startingIndex; 0
+            
+            if (distanceOX===0||distanceOX>localDistance) {
                 distanceOX=localDistance;
             }
         }
-        else if (array[j]==='o') {
+        else if (arr[j]==='o') {
             startingIndex=j
         }
     }
-
-return `smallest distance is:  ${Math.min(distanceXO,distanceOX)}`
+    
+if (distanceOX===0 && distanceXO==0){
+    return 0
+    }
+else if (distanceOX===0 || distanceXO===0){
+    return Math.max(distanceXO,distanceOX)
+}
+else {
+    return Math.min(distanceXO,distanceOX)
+}
 }
 
 
-array=['o','o','o',,'x',,,,,'o','x'];
-console.log(findXO(array))
-        
-            
-   
-        
+  
+  // TEST CASES
+  console.log(targetTerdekat([' ', ' ', 'o', ' ', ' ', 'x', ' ', 'x'])); // 3
+  console.log(targetTerdekat(['o', ' ', ' ', ' ', 'x', 'x', 'x'])); // 4
+  console.log(targetTerdekat(['x', ' ', ' ', ' ', 'x', 'x', 'o', ' '])); // 1
+  console.log(targetTerdekat([' ', ' ', 'o', ' '])); // 0
+  console.log(targetTerdekat([' ', 'o', ' ', 'x', 'x', ' ', ' ', 'x'])); // 2
